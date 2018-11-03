@@ -1,5 +1,5 @@
-# jdGradCompPhys
+# jdryu for GradCompPhys
 Computational Physics
 
-Cloned from @tkelley3's GradCompPhys.
-HW folders are created and maintained by myself, but the other folders should be identical to those in tkelley3's repo.
+HW folders are created and maintained by myself, James.
+This is in partial fulfillment for the requirements for Computational Physics with Tom Kelley.
