@@ -6,8 +6,8 @@ from matplotlib import pyplot
 n0 = 1000000
 r = np.random.random(n0)
 
-x = np.sqrt(r)/2
-Itot = np.sum(x)/n0
+x = np.sqrt(r)
+Itot = np.sum(x/2)/n0
 print("Importance Sampling: ", Itot)
 
 # Part 3
@@ -15,10 +15,20 @@ print("Importance Sampling: ", Itot)
 n0 = 1000000
 r = np.random.random(n0)
 
-a = np.arange(0.5, 1.8, 0.1)
+a = np.arange(0.001, 0.5, 0.005)
 I = np.zeros(np.size(a))
 Ivar = np.zeros(np.size(a))
+i = 0
 
 for ai in a:
-    x =
-    Itot = np.sum(x)/n0
+    norm = (-1+ai+np.e**(-ai))/ai
+    x = -np.log(1-r)/ai/norm
+    I = norm*np.sqrt(x)/(1-np.e**(-ai*x))
+    I[i] = np.sum(I)/n0
+    Ivar[i] = np.sqrt(np.absolute(I[i]**2 - np.sum(I**2))/n0)
+    i += 1
+
+pyplot.plot(a, Ivar)
+pyplot.xlabel('a')
+pyplot.ylabel('Variance of MC integral')
+pyplot.show()
