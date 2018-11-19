@@ -1,5 +1,5 @@
 """
-Challenge Problem 3, Part 5, 6
+Challenge Problem 3, Part 7
 """
 
 import numpy as np
@@ -22,14 +22,9 @@ def metropolis(vold, delta, T):
 
 # Measurement loop
 
-nwalkers = 1000
-Nmeasure = 1000
-Tarr = range(10, 110, 10)
-Earr = []
-colors = ['r', 'y', 'g', 'b', 'purple']
-binwidth = 10
-i = 0
-
+nwalkers = 10000
+Nmeasure = 10000
+Tarr = [10, 40]
 for T in Tarr:
     v = np.zeros(nwalkers)
     v.fill(20)
@@ -52,23 +47,7 @@ for T in Tarr:
                 equicount += 1
 
     E = (v**2)
-    Earr.append(np.mean(E))
+    Ems = np.mean(E**2) - (np.mean(E))**2
 
     print('Temperature:', T)
-    print('Steps til equilibrium:', Nwarmup)
-    print('Mean energy:', np.mean(E))
-    # pyplot.hist(E, bins=np.arange(0., 500., binwidth), density=True, ec=colors[(i % 5)], lw=0)
-    pyplot.hist(E, bins=np.arange(0., 500., binwidth), density=True, ec=colors[(i % 5)], lw=0, log=True)
-
-    i += 1
-
-pyplot.ylabel('P(E)')
-pyplot.show()
-
-pyplot.plot(Earr, Tarr)
-pyplot.xlabel('Temperature')
-pyplot.ylabel('Mean energy')
-pyplot.show()
-[slope, intercept] = np.polyfit(Tarr, Earr, 1)
-
-print('Specific heat =', slope)
+    print('Mean square energy fluctuation:', Ems/T**2)
