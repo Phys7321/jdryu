@@ -60,6 +60,10 @@ pyplot.xscale('log')
 pyplot.yscale('log')
 pyplot.show()
 
+pausekey = input('Press Enter to continue! ')
+
+pyplot.close()
+
 # Simple Monte Carlo Integration
 ngroups = 16
 
